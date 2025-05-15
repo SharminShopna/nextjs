@@ -25,6 +25,9 @@ const Navbar = () => {
                             <Link href='/menu' className="btn bg-[#281818] text-[#dfb380] font-bold  hover:underline">Menu</Link>
                         </li>
                         <li>
+                            <Link href='/add' className="btn bg-[#281818] text-[#dfb380] font-bold  hover:underline">Add Menu</Link>
+                        </li>
+                        <li>
                             <Link href='/about' className="btn bg-[#281818] text-[#dfb380] font-bold  hover:underline">About us</Link>
                         </li>
                         <li>
