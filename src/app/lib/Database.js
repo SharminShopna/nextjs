@@ -1,5 +1,5 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://<db_username>:<db_password>@cluster0.emc8p.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = process.env.DATABASE
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
@@ -8,3 +8,9 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   }
 });
+
+export async function getCollection(collectionName) {
+  await client.connect()
+  let db = client.db('nextjs')
+  return db.collection(collectionName)
+}
