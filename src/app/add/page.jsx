@@ -1,5 +1,7 @@
 "use client"
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast"; // toast import kora hoyeche
+
 const page = () => {
    const handleFromSubmit = async (e)=>{
     e.preventDefault();
@@ -16,12 +18,21 @@ const page = () => {
 
     axios
     .post("http://localhost:3000/api/menus", data)
-    .then((res)=>console.log(res.data))
-    .catch((e)=>console.log(e.message));
+    .then((res)=>{
+        if (res.data?.insertedId || res.data?.success) {
+          toast.success("Menu added successfully!"); // Success toast
+        } else {
+          toast.error("Something went wrong!"); // Error toast
+        }
+      })
+    .catch((e)=>{
+        toast.error(`Error: ${e.message}`); //  Error toast
+      });
    }
       
       return (
         <div>
+             <Toaster /> {/* Important for showing toast */}
            <div className=" p-24">
           <h2 className="text-4xl mt-24 mb-24 font-extrabold text-center text-[#D2B48C]">----Add Menu----</h2>
           <form className="space-y-8" onSubmit={handleFromSubmit}>
@@ -93,8 +104,8 @@ const page = () => {
                 </label>
                 <label className="input-group">
                   <input
-                    type="text"
-                    name="details"
+                    type="email"
+                    name="email"
                     placeholder="email"
                     className="input input-bordered w-full"
                   />
