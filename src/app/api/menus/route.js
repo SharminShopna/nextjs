@@ -1,5 +1,6 @@
 import { getCollection } from "@/app/lib/Database";
 import { NextResponse } from "next/server";
+// -----------------All Data POST-----------
 
 export const POST = async (req) => {
   try {
@@ -15,3 +16,11 @@ export const POST = async (req) => {
     );
   }
 };
+
+// ----------------All Data GET-----------------
+
+export const GET = async(req)=>{
+const collection = await getCollection("menus");
+const data = await collection.find().toArray();
+return NextResponse.json(data);
+}

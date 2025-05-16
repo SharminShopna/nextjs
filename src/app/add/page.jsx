@@ -17,7 +17,7 @@ const page = () => {
     const data = { title, description, category, photo, dateOnly, user, email };
 
     axios
-    .post("http://localhost:3000/api/menus", data)
+    .post("http://localhost:3001/api/menus", data)
     .then((res)=>{
         if (res.data?.insertedId || res.data?.success) {
           toast.success("Menu added successfully!"); // Success toast
